@@ -24,7 +24,7 @@ class TodoGroup extends StatelessWidget {
             groupName,
             style: TextStyle(
               color: color,
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -54,12 +54,12 @@ class TodoGroup extends StatelessWidget {
         Column(
           children: todos,
         ),
-        const Divider(
-          thickness: 0.3,
-          color: Colors.grey,
-        ),
-        const SizedBox(
-          height: 20,
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+          child: Divider(
+            thickness: 0.2,
+            color: Colors.grey,
+          ),
         ),
       ],
     );

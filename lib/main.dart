@@ -10,6 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final Color _colorMain = const Color(0xFFE75480);
   final Color _colorGreen = Colors.green.withOpacity(0.7);
+  final Color _colorLightGreen = Colors.green.withOpacity(0.5);
   final Color _colorOrange = Colors.orange.withOpacity(0.7);
 
   MyApp({super.key});
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
           actions: const [
             Icon(
-              Icons.settings,
+              Icons.miscellaneous_services_rounded,
               color: Colors.grey,
             ),
             SizedBox(
@@ -101,70 +102,129 @@ class MyApp extends StatelessWidget {
                 ),
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 20,
-                ),
-                child: Column(
-                  children: [
-                    TodoGroup(
-                      groupName: '[루빗] Clone Coding',
-                      color: _colorGreen,
-                      isDrop: true,
-                      isGroup: true,
-                      todos: [
-                        todoLine(
-                          content: '# 1.0 Main',
-                          isCheckd: false,
-                          fontColor: _colorGreen,
+              Expanded(
+                child: ScrollConfiguration(
+                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 20,
                         ),
-                      ],
-                    ),
-                    TodoGroup(
-                      groupName: '노마드 코더',
-                      color: _colorOrange,
-                      isDrop: true,
-                      isGroup: true,
-                      todos: [
-                        todoLine(
-                          content: '# 4.0 State',
-                          isCheckd: true,
-                          fontColor: _colorOrange,
+                        child: Column(
+                          children: [
+                            TodoGroup(
+                              groupName: '[루빗] Clone Coding',
+                              color: _colorLightGreen,
+                              isDrop: true,
+                              isGroup: true,
+                              todos: [
+                                todoLine(
+                                  content: '# 1.0 Main',
+                                  isCheckd: false,
+                                  fontColor: _colorLightGreen,
+                                ),
+                              ],
+                            ),
+                            TodoGroup(
+                              groupName: '노마드 코더',
+                              color: _colorOrange,
+                              isDrop: true,
+                              isGroup: true,
+                              todos: [
+                                todoLine(
+                                  content: '# 4.0 State',
+                                  isCheckd: true,
+                                  fontColor: _colorOrange,
+                                ),
+                                todoLine(
+                                  content: '# 4.1 setState',
+                                  isCheckd: false,
+                                  fontColor: _colorOrange,
+                                ),
+                              ],
+                            ),
+                            TodoGroup(
+                              groupName: '운동',
+                              color: _colorGreen,
+                              isDrop: true,
+                              isGroup: true,
+                              todos: [
+                                todoLine(
+                                  content: 'PushUp 10',
+                                  isCheckd: true,
+                                  fontColor: _colorGreen,
+                                ),
+                                todoLine(
+                                  content: 'Runday 실천',
+                                  isCheckd: false,
+                                  fontColor: _colorGreen,
+                                ),
+                              ],
+                            ),
+                            TodoGroup(
+                              isDrop: true,
+                              isGroup: false,
+                              todos: [
+                                todoLine(
+                                  content: 'PushUp 10',
+                                  isCheckd: true,
+                                  fontColor: _colorMain,
+                                ),
+                                todoLine(
+                                  content: 'Watching 1 Movie',
+                                  isCheckd: false,
+                                  fontColor: _colorMain,
+                                ),
+                                todoLine(
+                                  content: '[Overwatch] Daily Mission',
+                                  isCheckd: false,
+                                  fontColor: _colorMain,
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        todoLine(
-                          content: '# 4.1 setState',
-                          isCheckd: false,
-                          fontColor: _colorOrange,
-                        ),
-                      ],
-                    ),
-                    TodoGroup(
-                      isDrop: true,
-                      isGroup: false,
-                      todos: [
-                        todoLine(
-                          content: 'PushUp 10',
-                          isCheckd: true,
-                          fontColor: _colorMain,
-                        ),
-                        todoLine(
-                          content: 'Watching 1 Movie',
-                          isCheckd: false,
-                          fontColor: _colorMain,
-                        ),
-                        todoLine(
-                          content: '[Overwatch] Daily Mission',
-                          isCheckd: false,
-                          fontColor: _colorMain,
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: _colorMain,
+          child: const Icon(
+            Icons.add,
+            size: 30,
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          selectedItemColor: _colorMain,
+          unselectedItemColor: Colors.grey,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.stacked_bar_chart_sharp),
+              label: 'Statistics',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.ac_unit_rounded),
+              label: 'My Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Setting',
+            ),
+          ],
         ),
       ),
     );
