@@ -1,3 +1,4 @@
+import 'package:clone_app1/widgets/todo_group.dart';
 import 'package:clone_app1/widgets/todo_line.dart';
 import 'package:clone_app1/widgets/weekly_day.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final Color _colorMain = const Color(0xFFE75480);
   final Color _colorGreen = Colors.green.withOpacity(0.7);
-  final Color _colorOrange = Colors.amber.withOpacity(0.7);
+  final Color _colorOrange = Colors.orange.withOpacity(0.7);
 
   MyApp({super.key});
 
@@ -94,8 +95,9 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(
-                  color: Color(0XFFfbf7f4),
+                decoration: BoxDecoration(
+                  // color: Color(0XFFfbf7f4),
+                  color: _colorMain.withOpacity(0.1),
                 ),
                 height: 10,
               ),
@@ -106,57 +108,58 @@ class MyApp extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '[루빗] Clone Coding',
-                          style: TextStyle(
-                            color: _colorGreen,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Transform.scale(
-                          scale: 2.2,
-                          child: Icon(
-                            Icons.arrow_drop_up_outlined,
-                            color: Colors.grey.withOpacity(0.5),
-                            size: 16,
-                          ),
+                    TodoGroup(
+                      groupName: '[루빗] Clone Coding',
+                      color: _colorGreen,
+                      isDrop: true,
+                      isGroup: true,
+                      todos: [
+                        todoLine(
+                          content: '# 1.0 Main',
+                          isCheckd: false,
+                          fontColor: _colorGreen,
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      children: [
+                    TodoGroup(
+                      groupName: '노마드 코더',
+                      color: _colorOrange,
+                      isDrop: true,
+                      isGroup: true,
+                      todos: [
                         todoLine(
-                          content: '# 1.0 Main',
+                          content: '# 4.0 State',
                           isCheckd: true,
                           fontColor: _colorOrange,
                         ),
-                        const Divider(
-                          thickness: 0.3,
-                          color: Colors.grey,
-                        ),
                         todoLine(
-                          content: '# 4.0 State',
+                          content: '# 4.1 setState',
                           isCheckd: false,
-                          fontColor: _colorGreen,
-                        ),
-                        todoLine(
-                          content: '# 4.0 State',
-                          isCheckd: false,
-                          fontColor: _colorGreen,
-                        ),
-                        todoLine(
-                          content: '# 4.0 State',
-                          isCheckd: false,
-                          fontColor: _colorGreen,
+                          fontColor: _colorOrange,
                         ),
                       ],
-                    )
+                    ),
+                    TodoGroup(
+                      isDrop: true,
+                      isGroup: false,
+                      todos: [
+                        todoLine(
+                          content: 'PushUp 10',
+                          isCheckd: true,
+                          fontColor: _colorMain,
+                        ),
+                        todoLine(
+                          content: 'Watching 1 Movie',
+                          isCheckd: false,
+                          fontColor: _colorMain,
+                        ),
+                        todoLine(
+                          content: '[Overwatch] Daily Mission',
+                          isCheckd: false,
+                          fontColor: _colorMain,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

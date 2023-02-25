@@ -5,17 +5,28 @@ class todoLine extends StatelessWidget {
   final bool isCheckd;
   final Color fontColor;
 
-  const todoLine({
+  late IconData icon;
+  late Color iconColor;
+
+  todoLine({
     super.key,
     required this.content,
     required this.isCheckd,
     required this.fontColor,
-  });
+  }) {
+    if (isCheckd) {
+      icon = Icons.check_box;
+      iconColor = fontColor;
+    } else {
+      icon = Icons.check_box_outline_blank_rounded;
+      iconColor = Colors.grey.withOpacity(0.5);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -40,16 +51,10 @@ class todoLine extends StatelessWidget {
           Transform.scale(
             scale: 1.4,
             child: Icon(
-              isCheckd
-                  ? Icons.check_box
-                  : Icons.check_box_outline_blank_rounded,
+              icon,
               size: 16,
               fill: 1.0,
-              color: isCheckd
-                  ? fontColor
-                  : Colors.grey.withOpacity(
-                      0.5,
-                    ),
+              color: iconColor,
             ),
           ),
         ],
